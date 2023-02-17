@@ -1,0 +1,24 @@
+{
+  "name": "flare-stream",
+  "version": "1.0.0",
+  "description": "Flare Stream is a video streaming application built using ReactJs. It supports all major features of a streaming app like streaming videos, search for videos, playlist, like/dislike, watch later, authentication.",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html"
+  },
+  "keywords": [
+    "react",
+    "react-router",
+    "redux-toolkit"
+  ],
+  "author": "Gaurav De",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
