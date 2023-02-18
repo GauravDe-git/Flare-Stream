@@ -9,7 +9,7 @@ const Sidebar = () => {
   if (!toggleSidebar) return null;
 
   return (
-    <div className='p-2 bg-gray-50 max-w-[12rem] shadow-md'>
+    <aside className='p-2 bg-gray-50 w-[17rem] max-w-[20rem] shadow-md col-span-1 max-h-96'>
         <h1 className='text-lg p-2 font-bold'>Explore</h1>
         <ul className='flex flex-col justify-evenly'>
             <li>Trending</li>
@@ -20,9 +20,9 @@ const Sidebar = () => {
             <li>News</li>
             <li>Sports</li>
             <li>Learning</li>
-            <li>Fashion & Beauty</li>
+            <li>Fashion & Beauty</li> 
         </ul>
-    </div>
+    </aside>
   )
 }
 
