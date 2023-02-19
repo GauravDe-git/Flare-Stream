@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './Button'
 
-const buttonList = () => {
+const ButtonList = () => {
   return (
     <div className='flex mt-9'>
       <Button name={'All'}/>
@@ -15,4 +15,4 @@ const buttonList = () => {
   )
 }
 
-export default buttonList
+export default ButtonList
