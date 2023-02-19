@@ -1,5 +1,5 @@
 
-const API_KEY = "AIzaSyDu8fgEgivxksg3VSjQHdEpnQxp3Eh1bFU";
+export const API_KEY = "AIzaSyDu8fgEgivxksg3VSjQHdEpnQxp3Eh1bFU";
 
 const categoryId = 0;
 

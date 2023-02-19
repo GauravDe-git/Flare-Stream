@@ -26,11 +26,12 @@ const categories = [
   { name: 'Lifestyle', categoryId: 22 },
 ];
 
-const ButtonList = () => {
+const ButtonList = ({manageCategory}) => {
   const [activeCategory, setActiveCategory] = useState(0);
 
   const handleCategoryChange = (categoryId) => {
     setActiveCategory(categoryId);
+    manageCategory(categoryId);
     console.log(`Selected category: ${categoryId}`);
   }
 
