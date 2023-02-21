@@ -19,11 +19,11 @@ const Header = () => {
             <span className='text-blue-700'>Flare</span>Stream
         </div>
         <div className='ml-auto my-4'>
-        <input className=' border-2 border-gray-200 border-solid max-w-[7rem] md:max-w-[15rem]' type="search" name="search"  />
+        <input className=' border-2 border-gray-200 border-solid max-w-[7rem] md:max-w-[18rem]' type="search" name="search"  />
         <button className='md:p-2 hover:bg-gray-300'>Search</button>
         </div>
         
-        <button className='ml-auto mr-2 my-3 px-3 py-1.5  bg-blue-400 text-white font-bold'>
+        <button className='ml-auto mr-3 my-4 px-3 py-1 rounded-md bg-blue-500 text-white font-bold'>
             Login
         </button>
         

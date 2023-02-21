@@ -9,9 +9,9 @@ const Sidebar = () => {
   if (!toggleSidebar) return null;
 
   return (
-    <aside className='p-2 bg-gray-50 w-[17rem] max-w-[20rem] shadow-md col-span-1 max-h-96'>
-        <h1 className='text-lg p-2 font-bold'>Explore</h1>
-        <ul className='flex flex-col justify-evenly'>
+    <aside className='p-2 bg-gray-50 w-[15rem] max-w-[20rem] shadow-md col-span-1 h-fit'>
+        <ul className='flex flex-col justify-evenly space-y-3'>
+            <li className='text-lg p-2 font-bold'>Explore</li>
             <li>Trending</li>
             <li>Shopping</li>
             <li>Music</li>

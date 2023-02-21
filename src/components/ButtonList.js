@@ -1,28 +1,13 @@
 import React, {useState} from 'react'
 import Button from './Button'
 
-// const ButtonList = () => {
-//   return (
-//     <div className='flex mt-9'>
-//       <Button name={'All'}/>
-//       <Button name={'Gaming'}/>
-//       <Button name={'Music'}/>
-//       <Button name={'Sports'}/>
-//       <Button name={'News'}/>
-//       <Button name={'Cooking'}/>
-//       <Button name={'Lifestyle'}/>
-//     </div>
-//   )
-// }
-
-
 const categories = [
   { name: 'All', categoryId: 0 },
   { name: 'Gaming', categoryId: 20 },
   { name: 'Music', categoryId: 10 },
   { name: 'Sports', categoryId: 17 },
   { name: 'News', categoryId: 25 },
-  { name: 'Cooking', categoryId: 26 },
+  { name: 'Autos & Vehicles', categoryId: 2 },
   { name: 'Lifestyle', categoryId: 22 },
 ];
 
@@ -32,7 +17,6 @@ const ButtonList = ({manageCategory}) => {
   const handleCategoryChange = (categoryId) => {
     setActiveCategory(categoryId);
     manageCategory(categoryId);
-    console.log(`Selected category: ${categoryId}`);
   }
 
 
