@@ -1,22 +1,15 @@
 import React, {useState} from 'react'
 import Button from './Button'
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCategory } from '../utils/categorySlice';
 
-const categories = [
-  { name: 'All', categoryId: 0 },
-  { name: 'Gaming', categoryId: 20 },
-  { name: 'Music', categoryId: 10 },
-  { name: 'Sports', categoryId: 17 },
-  { name: 'News', categoryId: 25 },
-  { name: 'Autos & Vehicles', categoryId: 2 },
-  { name: 'Lifestyle', categoryId: 22 },
-];
 
-const ButtonList = ({manageCategory}) => {
-  const [activeCategory, setActiveCategory] = useState(0);
+const ButtonList = () => {
+  const dispatch = useDispatch();
+  const {categories, selectedCategoryID} = useSelector((state) => state.categories);
 
   const handleCategoryChange = (categoryId) => {
-    setActiveCategory(categoryId);
-    manageCategory(categoryId);
+    dispatch(selectCategory(categoryId));
   }
 
 
@@ -27,7 +20,7 @@ const ButtonList = ({manageCategory}) => {
           key={category.categoryId}
           name={category.name}
           onClick={() => handleCategoryChange(category.categoryId)}
-          isActive={category.categoryId === activeCategory}
+          isActive={category.categoryId === selectedCategoryID}
         />
       ))}
     </div>

@@ -10,3 +10,4 @@ const Button = ({ name, onClick, isActive }) => {
 };
 
 export default Button;
+
