@@ -7,8 +7,8 @@ const VideoCard = ({info}) => {
     <div className='p-2 m-2 shadow-lg max-w-[18rem] h-full flex flex-col'>
         <img className='rounded-lg w-[24rem] object-cover object-center' src={thumbnails.medium.url} alt="thumbnail" />
         <div className="flex-1 flex flex-col justify-between">
-            <div className="flex flex-col h-16">
-                <h3 className='font-bold text-lg overflow-hidden overflow-ellipsis whitespace-nowrap'>{title}</h3>
+            <div className="overflow-hidden h-20">
+                <h3 className='font-bold text-lg line-clamp-2'>{title}</h3>
                 <span className="text-gray-500 text-sm">{channelTitle}</span>
             </div>
             <span className="text-gray-500 text-sm">{statistics.viewCount} views</span>
