@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import Hamburger from "../assets/hamburger.png";
 import { toggleMenu } from "../utils/sideBarSlice";
 
@@ -19,9 +20,12 @@ const Header = () => {
           alt="hamburger"
           onClick={sideBarHandler}
         />
-        <div className="font-bold text-lg m-4">
-          <span className="text-blue-700">Flare</span>Stream
-        </div>
+        <Link to="/">
+          <div className="font-bold text-lg m-4">
+            <span className="text-blue-700">Flare</span>Stream
+          </div>
+        </Link>
+
         <div className="ml-auto my-4">
           <form className="flex flex-wrap items-center justify-center w-full lg:w-auto lg:ml-auto lg:mr-3">
             <input
