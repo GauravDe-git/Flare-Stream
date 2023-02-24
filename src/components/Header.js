@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Hamburger from "../assets/hamburger.png";
+import { cacheResults } from "../utils/searchSlice";
 import { toggleMenu } from "../utils/sideBarSlice";
+import store from "../utils/store";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -11,20 +13,38 @@ const Header = () => {
     dispatch(toggleMenu());
   };
 
-  const [searchText, SetSearchText] = useState('');
-  const [suggestions,SetSuggestions] = useState([]);
+  const [searchText, SetSearchText] = useState("");
+  const [suggestions, SetSuggestions] = useState([]);
   const [showSuggestions, SetShowSuggestions] = useState(false);
 
+  const searchCache = useSelector((store) => store.search);
+
   const suggestionsApi = async () => {
-    const searchSuggest = await fetch("http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" + searchText);
+    console.log("Api call - " + searchText)
+    const searchSuggest = await fetch(
+      "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
+        searchText
+    );
     const json = await searchSuggest.json();
     SetSuggestions(json[1]);
-  }
 
-  useEffect(()=>{
-    const callSuggestions = setTimeout(()=>suggestionsApi(),200);
-    return ()=>{clearTimeout(callSuggestions)}
-  },[searchText])
+    dispatch(cacheResults({
+      [searchText] : json[1]
+    }))
+  };
+
+  useEffect(() => {
+    const callSuggestions = setTimeout(() => {
+      if (searchCache[searchText]) {
+        SetSuggestions(searchCache[searchText]);
+      } else {
+        suggestionsApi();
+      }
+    }, 200);
+    return () => {
+      clearTimeout(callSuggestions);
+    };
+  }, [searchText]);
 
   return (
     <header className="fixed w-full">
@@ -49,22 +69,31 @@ const Header = () => {
               name="search"
               placeholder="Search"
               value={searchText}
-              onChange={(e)=>{SetSearchText(e.target.value);}}
-              onFocus={()=>{SetShowSuggestions(true)}}
-              onBlur={()=>{SetShowSuggestions(false)}}
+              onChange={(e) => {
+                SetSearchText(e.target.value);
+              }}
+              onFocus={() => {
+                SetShowSuggestions(true);
+              }}
+              onBlur={() => {
+                SetShowSuggestions(false);
+              }}
             />
             <button className="w-full md:w-auto px-3 py-1 ml-2 rounded-md bg-blue-500 text-white font-bold hover:bg-blue-600 focus:outline-none">
               Search
             </button>
           </form>
-          {showSuggestions && <div className="fixed bg-white rounded-md border border-gray-200 shadow-md my-1 w-1/3 md:w-1/4 lg:w-1/6">
-            <ul className="space-y-1">
-              {suggestions.map(s=><li key={s} className="hover:bg-gray-100 p-1 select-none">
-              {s}
-              </li>
-              )}
-            </ul>
-          </div>}
+          {showSuggestions && (
+            <div className="fixed bg-white rounded-md border border-gray-200 shadow-md my-1 w-1/3 md:w-1/4 lg:w-1/6">
+              <ul className="space-y-1">
+                {suggestions.map((s) => (
+                  <li key={s} className="hover:bg-gray-100 p-1 select-none">
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <button className="ml-auto mr-3 my-4 px-3 py-1 rounded-md bg-blue-500 text-white font-bold">
