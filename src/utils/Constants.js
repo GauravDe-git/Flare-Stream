@@ -1,4 +1,4 @@
-
+export const SUGGESTIONS_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 export const API_KEY = "AIzaSyDu8fgEgivxksg3VSjQHdEpnQxp3Eh1bFU";
 
 const categoryId = 0;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Hamburger from "../assets/hamburger.png";
@@ -11,9 +11,24 @@ const Header = () => {
     dispatch(toggleMenu());
   };
 
+  const [searchText, SetSearchText] = useState('');
+  const [suggestions,SetSuggestions] = useState([]);
+  const [showSuggestions, SetShowSuggestions] = useState(false);
+
+  const suggestionsApi = async () => {
+    const searchSuggest = await fetch("http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" + searchText);
+    const json = await searchSuggest.json();
+    SetSuggestions(json[1]);
+  }
+
+  useEffect(()=>{
+    const callSuggestions = setTimeout(()=>suggestionsApi(),200);
+    return ()=>{clearTimeout(callSuggestions)}
+  },[searchText])
+
   return (
-    <header>
-      <nav className="flex  bg-gray-50 shadow-md max-lg:min-w-[56rem]">
+    <header className="fixed w-full">
+      <nav className="flex bg-gray-50 shadow-md ">
         <img
           className="w-7 h-8 mx-2 my-3 cursor-pointer hover:bg-gray-300"
           src={Hamburger}
@@ -33,11 +48,23 @@ const Header = () => {
               type="search"
               name="search"
               placeholder="Search"
+              value={searchText}
+              onChange={(e)=>{SetSearchText(e.target.value);}}
+              onFocus={()=>{SetShowSuggestions(true)}}
+              onBlur={()=>{SetShowSuggestions(false)}}
             />
             <button className="w-full md:w-auto px-3 py-1 ml-2 rounded-md bg-blue-500 text-white font-bold hover:bg-blue-600 focus:outline-none">
               Search
             </button>
           </form>
+          {showSuggestions && <div className="fixed bg-white rounded-md border border-gray-200 shadow-md my-1 w-1/3 md:w-1/4 lg:w-1/6">
+            <ul className="space-y-1">
+              {suggestions.map(s=><li key={s} className="hover:bg-gray-100 p-1 select-none">
+              {s}
+              </li>
+              )}
+            </ul>
+          </div>}
         </div>
 
         <button className="ml-auto mr-3 my-4 px-3 py-1 rounded-md bg-blue-500 text-white font-bold">
