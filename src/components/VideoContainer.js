@@ -1,30 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { API_KEY, YOUTUBE_API_BASE_URL } from "../utils/Constants";
+import React from "react";
 import VideoCard from "./VideoCard";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import useFetchVideos from "../utils/useFetchVideos";
 
 const VideoContainer = () => {
-  const [loadVideos, SetLoadVideos] = useState([]);
+
   const { selectedCategoryID } = useSelector((state) => state.categories);
-
-  useEffect(() => {
-    getAPI();
-  }, [selectedCategoryID]);
-
-  const getAPI = async () => {
-    const data = await fetch(
-      `${YOUTUBE_API_BASE_URL}?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=30&regionCode=US&videoCategoryId=${selectedCategoryID}&key=${API_KEY}`
-    );
-    const json = await data.json();
-    SetLoadVideos(json.items);
-  };
+  const videos = useFetchVideos(selectedCategoryID);
 
   return (
     <div className="flex flex-wrap gap-4">
-      {loadVideos.map((videos) => (
-        <Link to= {"watch?v=" + videos.id} key={videos.id} >
-        <VideoCard info={videos}/>
+      {videos.map((videosArr) => (
+        <Link to= {"watch?v=" + videosArr.id} key={videosArr.id} >
+        <VideoCard info={videosArr}/>
         </Link>
       ))}
     </div>
