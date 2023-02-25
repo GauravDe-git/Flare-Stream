@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import sideBarSlice from "./sideBarSlice";
 import categorySlice from "./categorySlice";
 import searchSlice from "./searchSlice";
+import authSlice from "../components/Auth/authSlice";
 
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
         sidebar: sideBarSlice,
         categories: categorySlice,
         search: searchSlice,
+        auth: authSlice,
     },
 });
 

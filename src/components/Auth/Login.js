@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { fireBaseApp } from "../../Firebase";
+import { useNavigate } from "react-router-dom";
+import { setAuthUser } from "./authSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [email, SetEmail] = useState("");
   const [password, SetPassword] = useState("");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -13,6 +19,8 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
+        dispatch(setAuthUser(userCredential.user.uid));
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);

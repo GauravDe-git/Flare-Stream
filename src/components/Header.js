@@ -5,6 +5,7 @@ import Hamburger from "../assets/hamburger.png";
 import { cacheResults } from "../utils/searchSlice";
 import { toggleMenu } from "../utils/sideBarSlice";
 import store from "../utils/store";
+import { signOutUser } from "./Auth/authSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Header = () => {
   const [showSuggestions, SetShowSuggestions] = useState(false);
 
   const searchCache = useSelector((store) => store.search);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const suggestionsApi = async () => {
     console.log("Api call - " + searchText);
@@ -98,11 +100,20 @@ const Header = () => {
           )}
         </div>
 
-        <Link to="login" className="ml-auto mr-3 my-4 ">
-          <button className="px-3 py-1 rounded-md bg-blue-500 text-white font-bold">
-            Login
+        {isLoggedIn ? (
+          <button
+            className="ml-auto mr-3 my-4 px-3 py-1 rounded-md bg-blue-500 text-white font-bold"
+            onClick={() => dispatch(signOutUser())}
+          >
+            Logout
           </button>
-        </Link>
+        ) : (
+          <Link to="login" className="ml-auto mr-3 my-4 ">
+            <button className="px-3 py-1 rounded-md bg-blue-500 text-white font-bold">
+              Login
+            </button>
+          </Link>
+        )}
       </nav>
     </header>
   );
