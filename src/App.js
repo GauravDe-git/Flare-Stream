@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import Login from "./components/Auth/Login";
+import Signup from "./components/Auth/Signup";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -38,6 +39,10 @@ const appRouter = createBrowserRouter([
       {
         path: "login",
         element: <Login/>,
+      },
+      {
+        path: "signup",
+        element: <Signup/>,
       },
     ],
   },

@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { fireBaseApp } from "../../Firebase";
 
 const Login = () => {
-  return(
+  const [email, SetEmail] = useState("");
+  const [password, SetPassword] = useState("");
+
+  const loginSubmit = (e) => {
+    e.preventDefault();
+    const auth = getAuth(fireBaseApp);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md mx-auto p-8 bg-white rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={loginSubmit}>
           <div>
             <label htmlFor="email" className="block font-semibold mb-1">
               Email
@@ -16,6 +34,8 @@ const Login = () => {
               id="email"
               className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               required
+              value={email}
+              onChange={(e) => SetEmail(e.target.value)}
             />
           </div>
           <div>
@@ -28,6 +48,8 @@ const Login = () => {
               id="password"
               className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               required
+              value={password}
+              onChange={(e) => SetPassword(e.target.value)}
             />
           </div>
           <div className="flex items-center">
@@ -50,12 +72,12 @@ const Login = () => {
             </button>
             <div className="text-sm">
               <a href="#" className="text-blue-500 hover:underline">
-                Forgot password?
+                Enter Guest Credentials
               </a>
               <span className="mx-2">|</span>
-              <a href="#" className="text-blue-500 hover:underline">
+              <Link to="/signup" className="text-blue-500 hover:underline">
                 Create an account
-              </a>
+              </Link>
             </div>
           </div>
         </form>
