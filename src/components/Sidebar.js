@@ -9,7 +9,7 @@ const Sidebar = () => {
   if (!toggleSidebar) return null;
 
   return (
-    <aside className='p-2 mt-4 bg-gray-50 w-[15rem] max-w-[20rem] shadow-md col-span-1 h-fit'>
+    <aside className='p-2 mt-4 bg-gray-50 w-fit md:w-[15rem] max-w-[20rem] shadow-md col-span-1 h-fit absolute top-14 left-0'>
         <ul className='flex flex-col justify-evenly space-y-3'>
             <li className='text-lg p-2 font-bold'>Explore</li>
             <li>Trending</li>

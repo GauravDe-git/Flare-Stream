@@ -20,7 +20,7 @@ const Header = () => {
   const searchCache = useSelector((store) => store.search);
 
   const suggestionsApi = async () => {
-    console.log("Api call - " + searchText)
+    console.log("Api call - " + searchText);
     const searchSuggest = await fetch(
       "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
         searchText
@@ -28,9 +28,11 @@ const Header = () => {
     const json = await searchSuggest.json();
     SetSuggestions(json[1]);
 
-    dispatch(cacheResults({
-      [searchText] : json[1]
-    }))
+    dispatch(
+      cacheResults({
+        [searchText]: json[1],
+      })
+    );
   };
 
   useEffect(() => {
@@ -96,9 +98,11 @@ const Header = () => {
           )}
         </div>
 
-        <button className="ml-auto mr-3 my-4 px-3 py-1 rounded-md bg-blue-500 text-white font-bold">
-          Login
-        </button>
+        <Link to="login" className="ml-auto mr-3 my-4 ">
+          <button className="px-3 py-1 rounded-md bg-blue-500 text-white font-bold">
+            Login
+          </button>
+        </Link>
       </nav>
     </header>
   );
