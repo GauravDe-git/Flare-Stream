@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Hamburger from "../assets/hamburger.png";
-import { cacheResults } from "../utils/searchSlice";
 import { toggleMenu } from "../utils/sideBarSlice";
 import store from "../utils/store";
 import { signOutUser } from "./Auth/authSlice";
+import useSearchSuggestions from "../utils/useSearchSuggestions";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -15,40 +15,11 @@ const Header = () => {
   };
 
   const [searchText, SetSearchText] = useState("");
-  const [suggestions, SetSuggestions] = useState([]);
-  const [showSuggestions, SetShowSuggestions] = useState(false);
-
-  const searchCache = useSelector((store) => store.search);
+  
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const suggestionsApi = async () => {
-    console.log("Api call - " + searchText);
-    const searchSuggest = await fetch(
-      "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
-        searchText
-    );
-    const json = await searchSuggest.json();
-    SetSuggestions(json[1]);
+  const { suggestions, showSuggestions, setShowSuggestions } = useSearchSuggestions(searchText);
 
-    dispatch(
-      cacheResults({
-        [searchText]: json[1],
-      })
-    );
-  };
-
-  useEffect(() => {
-    const callSuggestions = setTimeout(() => {
-      if (searchCache[searchText]) {
-        SetSuggestions(searchCache[searchText]);
-      } else {
-        suggestionsApi();
-      }
-    }, 200);
-    return () => {
-      clearTimeout(callSuggestions);
-    };
-  }, [searchText]);
 
   return (
     <header className="fixed w-full">
@@ -77,10 +48,10 @@ const Header = () => {
                 SetSearchText(e.target.value);
               }}
               onFocus={() => {
-                SetShowSuggestions(true);
+                setShowSuggestions(true);
               }}
               onBlur={() => {
-                SetShowSuggestions(false);
+                setShowSuggestions(false);
               }}
             />
             <button className="w-full md:w-auto px-3 py-1 ml-2 rounded-md bg-blue-500 text-white font-bold hover:bg-blue-600 focus:outline-none">

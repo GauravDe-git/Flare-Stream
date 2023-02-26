@@ -6,7 +6,6 @@ const categoryId = 0;
 export const YOUTUBE_API_BASE_URL = "https://youtube.googleapis.com/youtube/v3/videos";
 export const YOUTUBE_API = `${YOUTUBE_API_BASE_URL}?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=30&regionCode=US&videoCategoryId=${categoryId}&key=${API_KEY}`;
 
+const YOUTUBE_SEARCH_API = `https://www.googleapis.com/youtube/v3/search?q=$search_query&maxResults=30&key=${API_KEY}`
 
-
-
-
+// `https://www.googleapis.com/youtube/v3/search?q=${search_query}&maxResults=30&key=${API_KEY}`

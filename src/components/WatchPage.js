@@ -26,7 +26,7 @@ const WatchPage = () => {
       </div>
       <div className="col-span-5 md:col-span-3">
         <div className="flex flex-col gap-2 p-4 rounded-lg shadow-lg bg-white">
-          <h1 className="text-lg font-bold">Related Videos</h1>
+          <h1 className="text-lg font-bold">Popular Videos</h1>
           <VideoContainer />
         </div>
       </div>
