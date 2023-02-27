@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 const MainContainer = () => {
 
   const toggleSidebar = useSelector((store) => store.sidebar.isMenuOpen)
-  const marginLeftStyle = toggleSidebar ? 'md:ml-64' : 'ml-0'
+  const marginLeftStyle = toggleSidebar ? 'md:ml-48' : 'ml-0'
 
   return (
     <div className={`col-span-11 ${marginLeftStyle}`}>

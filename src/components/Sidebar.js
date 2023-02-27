@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import store from '../utils/store'
+import {Compass,FolderPlus,ThumbsUp,Eye,Clock} from 'react-feather'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
 
@@ -9,18 +10,13 @@ const Sidebar = () => {
   if (!toggleSidebar) return null;
 
   return (
-    <aside className='p-2 mt-4 bg-gray-50 w-fit md:w-[15rem] max-w-[20rem] shadow-md col-span-1 h-fit absolute top-14 left-0'>
-        <ul className='flex flex-col justify-evenly space-y-3'>
-            <li className='text-lg p-2 font-bold'>Explore</li>
-            <li>Trending</li>
-            <li>Shopping</li>
-            <li>Music</li>
-            <li>Live</li>
-            <li>Gaming</li>
-            <li>News</li>
-            <li>Sports</li>
-            <li>Learning</li>
-            <li>Fashion & Beauty</li> 
+    <aside className='p-2 mt-4 bg-gray-50 w-fit h-3/4 shadow-md col-span-1 fixed top-14 left-0'>
+        <ul className='flex flex-col justify-center items-center space-y-3'>
+            <Link to="/"><li className='text-lg p-2 flex flex-col justify-center items-center'><Compass/> Explore</li></Link> 
+            <li className='text-lg p-2 flex flex-col justify-center items-center'><FolderPlus/> Playlists</li>
+            <li className='text-lg p-2 flex flex-col justify-center items-center'><ThumbsUp/> Liked</li>
+            <li className='text-lg p-2 flex flex-col justify-center items-center'><Eye/> Watch Later</li>
+            <li className='text-lg p-2 flex flex-col justify-center items-center'><Clock/> History</li>
         </ul>
     </aside>
   )

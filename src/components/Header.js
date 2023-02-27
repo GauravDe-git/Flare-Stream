@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Hamburger from "../assets/hamburger.png";
 import { toggleMenu } from "../utils/sideBarSlice";
-import store from "../utils/store";
 import { signOutUser } from "./Auth/authSlice";
 import useSearchSuggestions from "../utils/useSearchSuggestions";
 import { searchedFor } from "../utils/resultsSlice";
+import { User } from "react-feather";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -77,21 +77,29 @@ const Header = () => {
               </ul>
             </div>
           )}
-        </div>
+        </div>        
 
         {isLoggedIn ? (
+          <div className="ml-auto mr-3 my-auto flex flex-row gap-4">
+          <Link to="/account"><User size={30}/></Link> 
           <button
-            className="ml-auto mr-3 my-4 px-3 py-1 rounded-md bg-blue-500 text-white font-bold"
+            className="px-3 py-1 rounded-md bg-blue-500 text-white font-bold"
             onClick={() => dispatch(signOutUser())}
           >
             Logout
           </button>
+          </div>
+          
         ) : (
-          <Link to="login" className="ml-auto mr-3 my-4 ">
+          <div className="ml-auto mr-3 my-auto ">
+          
+          <Link to="login" >
             <button className="px-3 py-1 rounded-md bg-blue-500 text-white font-bold">
               Login
             </button>
           </Link>
+          </div>
+          
         )}
       </nav>
     </header>

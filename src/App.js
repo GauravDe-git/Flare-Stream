@@ -9,6 +9,8 @@ import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
+import Footer from "./components/Footer";
+import Account from "./components/Auth/Account";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -18,6 +20,7 @@ const App = () => {
       <div>
         <Header />
         <Body />
+        <Footer/>
       </div>
     </Provider>
   );
@@ -43,6 +46,10 @@ const appRouter = createBrowserRouter([
       {
         path: "signup",
         element: <Signup/>,
+      },
+      {
+        path: "account",
+        element: <Account/>,
       },
     ],
   },

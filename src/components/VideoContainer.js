@@ -39,7 +39,7 @@ const VideoContainer = () => {
     return(
       <div className="flex flex-wrap gap-4">
         {resultVideos.map((resultVid)=>(
-          <Link to={"watch?v=" + resultVid.id.videoId}>
+          <Link to={"/watch?v=" + resultVid.id.videoId}>
             <SearchVideoCard key={resultVid.id.videoId} video={resultVid}/>
           </Link>
         ))}
@@ -50,7 +50,7 @@ const VideoContainer = () => {
   return (
     <div className="flex flex-wrap gap-4">
       {videos.map((videosArr) => (
-        <Link to= {"watch?v=" + videosArr.id} key={videosArr.id} >
+        <Link to= {"/watch?v=" + videosArr.id} key={videosArr.id} >
         <VideoCard  info={videosArr}/>
         </Link>
       ))}
