@@ -14,7 +14,7 @@ const Sidebar = () => {
         <ul className='flex flex-col justify-center items-center space-y-3'>
             <Link to="/"><li className='text-lg p-2 flex flex-col justify-center items-center'><Compass/> Explore</li></Link> 
             <li className='text-lg p-2 flex flex-col justify-center items-center'><FolderPlus/> Playlists</li>
-            <li className='text-lg p-2 flex flex-col justify-center items-center'><ThumbsUp/> Liked</li>
+            <Link to="likedVideos"><li className='text-lg p-2 flex flex-col justify-center items-center'><ThumbsUp/> Liked</li></Link> 
             <li className='text-lg p-2 flex flex-col justify-center items-center'><Eye/> Watch Later</li>
             <li className='text-lg p-2 flex flex-col justify-center items-center'><Clock/> History</li>
         </ul>

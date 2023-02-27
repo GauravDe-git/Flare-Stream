@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import Header from "./components/Header";
-import store from "./utils/store";
+import store, {persistor} from "./utils/store";
 import Body from "./components/Body";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
@@ -11,6 +11,8 @@ import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import Footer from "./components/Footer";
 import Account from "./components/Auth/Account";
+import LikedVideos from "./components/Private Pages/LikedVideos";
+import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -29,7 +31,9 @@ const App = () => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <PersistGate loading={null} persistor={persistor}>
+    <App /></PersistGate>),
     children: [
       {
         path: "/",
@@ -51,6 +55,10 @@ const appRouter = createBrowserRouter([
         path: "account",
         element: <Account/>,
       },
+      {
+        path: "likedVideos",
+        element: <LikedVideos/>
+      }
     ],
   },
 ]);
