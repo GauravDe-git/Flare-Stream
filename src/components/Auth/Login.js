@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { setAuthUser } from "./authSlice";
 import { useDispatch } from "react-redux";
 
-
 const Login = () => {
   const [email, SetEmail] = useState("");
   const [password, SetPassword] = useState("");
@@ -17,7 +16,10 @@ const Login = () => {
   const loginSubmit = (e) => {
     e.preventDefault();
     const auth = getAuth(fireBaseApp);
-    signInWithEmailAndPassword(auth, email, password)
+    setPersistence(auth, browserLocalPersistence)
+    .then(()=>{
+      return signInWithEmailAndPassword(auth, email, password)
+    })
       .then((userCredential) => {
         console.log(userCredential);
         dispatch(setAuthUser(userCredential.user.uid));

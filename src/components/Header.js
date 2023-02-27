@@ -7,9 +7,11 @@ import { signOutUser } from "./Auth/authSlice";
 import useSearchSuggestions from "../utils/useSearchSuggestions";
 import { searchedFor } from "../utils/resultsSlice";
 import { User } from "react-feather";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const sideBarHandler = () => {
     dispatch(toggleMenu());
@@ -27,6 +29,11 @@ const Header = () => {
       dispatch(searchedFor(searchText));
     }
   };
+
+  const handleLogout = () => {
+    dispatch(signOutUser());
+    navigate("/");
+  }
 
 
   return (
@@ -84,7 +91,7 @@ const Header = () => {
           <Link to="/account"><User size={30}/></Link> 
           <button
             className="px-3 py-1 rounded-md bg-blue-500 text-white font-bold"
-            onClick={() => dispatch(signOutUser())}
+            onClick={handleLogout}
           >
             Logout
           </button>

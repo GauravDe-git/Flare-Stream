@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../../Firebase';
 
+
 const initialState = {
   authUser: null,
   isLoggedIn: false,
@@ -30,13 +31,16 @@ export const listenAuthState = () => async (dispatch) => {
   });
 };
 
+
 export const signOutUser = () => async (dispatch) => {
   try {
     await signOut(auth);
     dispatch(setAuthUser(null));
+    
     const logoutAlert = setTimeout(() => {
         alert("You have logged out!")
-    }, 500); 
+        
+    }, 500);
   } catch (error) {
     console.log(error.message);
   }
