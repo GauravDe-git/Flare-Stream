@@ -6,6 +6,7 @@ import { toggleMenu } from "../utils/sideBarSlice";
 import store from "../utils/store";
 import { signOutUser } from "./Auth/authSlice";
 import useSearchSuggestions from "../utils/useSearchSuggestions";
+import { searchedFor } from "../utils/resultsSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,13 @@ const Header = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const { suggestions, showSuggestions, setShowSuggestions } = useSearchSuggestions(searchText);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchText !== "") {
+      dispatch(searchedFor(searchText));
+    }
+  };
 
 
   return (
@@ -37,7 +45,7 @@ const Header = () => {
         </Link>
 
         <div className="ml-auto my-4">
-          <form className="flex flex-wrap items-center justify-center w-full lg:w-auto lg:ml-auto lg:mr-3">
+          <form className="flex flex-wrap items-center justify-center w-full lg:w-auto lg:ml-auto lg:mr-3" onSubmit={handleSubmit}>
             <input
               className="w-full md:w-auto max-w-xs md:max-w-md px-2 py-1 rounded-md shadow-sm border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none"
               type="search"
@@ -54,7 +62,7 @@ const Header = () => {
                 setShowSuggestions(false);
               }}
             />
-            <button className="w-full md:w-auto px-3 py-1 ml-2 rounded-md bg-blue-500 text-white font-bold hover:bg-blue-600 focus:outline-none">
+            <button className="w-full md:w-auto px-3 py-1 ml-2 rounded-md bg-blue-500 text-white font-bold hover:bg-blue-600 focus:outline-none" type="submit">
               Search
             </button>
           </form>

@@ -3,6 +3,7 @@ import sideBarSlice from "./sideBarSlice";
 import categorySlice from "./categorySlice";
 import searchSlice from "./searchSlice";
 import authSlice from "../components/Auth/authSlice";
+import resultsSlice from "./resultsSlice";
 
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
         categories: categorySlice,
         search: searchSlice,
         auth: authSlice,
+        results: resultsSlice,
     },
 });
 

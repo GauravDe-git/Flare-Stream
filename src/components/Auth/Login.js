@@ -20,6 +20,8 @@ const Login = () => {
       .then((userCredential) => {
         console.log(userCredential);
         dispatch(setAuthUser(userCredential.user.uid));
+
+        localStorage.setItem('token', userCredential._tokenResponse.idToken);
         navigate("/");
       })
       .catch((error) => {
