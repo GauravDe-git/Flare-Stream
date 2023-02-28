@@ -1,8 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeLikedVideo } from '../../utils/likedVideosSlice';
 
 const LikedVideos = () => {
-  const likedVideos = useSelector(store => store.likedVideos);
+  const likedVideos = useSelector(state => state.likedVideos);
+  const dispatch = useDispatch();
+
+  const handleDeleteClick = video => {
+    dispatch(removeLikedVideo({ id: video.id }));
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -15,6 +21,7 @@ const LikedVideos = () => {
                 <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} className="w-full h-full object-cover rounded-lg shadow-md" />
               </div>
               <h3 className="text-sm font-medium">{video.snippet.title}</h3>
+              <button onClick={() => handleDeleteClick(video)} className="mt-2 bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-2 rounded-md shadow-md">Delete</button>
             </div>
           ))}
         </div>
