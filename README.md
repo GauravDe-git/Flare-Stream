@@ -1,8 +1,8 @@
-#**Flare Stream Video Streaming App**
+# **Flare Stream Video Streaming App**
 
 Flare Stream is a web application built using React, Redux, React-Router-dom, TailwindCss, react feather icons, redux persist, and Firebase. It allows users to browse and search for YouTube videos, filter the videos, and like or remove liked videos. It also provides account pages for signed-in users to view and manage their account settings.
 
-###**Features**
+### **Features**
 
 - YouTube API v3 integration for dynamic video data display
 - Video filtering feature
@@ -12,7 +12,7 @@ Flare Stream is a web application built using React, Redux, React-Router-dom, Ta
 - Liked videos feature for signed-in users with liked videos page and removal functionality
 - Account page for signed-in users to manage their account settings
 
-###**Tech Stack**
+### **Tech Stack**
 
 - React
 - Redux
@@ -22,7 +22,7 @@ Flare Stream is a web application built using React, Redux, React-Router-dom, Ta
 - Redux persist
 - Firebase
 
-###**How to Use**
+### **How to Use**
 
 1. Clone the repository to your local machine.
 1. Navigate to the project directory and install the dependencies using **npm install**.
