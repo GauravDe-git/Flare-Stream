@@ -14,6 +14,8 @@ import persistStore from "redux-persist/es/persistStore";
 const persistConfig = {
     key: 'root',
     storage,
+    whitelist: ['sidebar', 'categories', 'search', 'auth', 'likedVideos'],
+    blacklist: ['results'],
 };
 
 const rootReducer = combineReducers({

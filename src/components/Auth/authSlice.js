@@ -1,9 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../../Firebase';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
 
 const initialState = {
   authUser: null,
@@ -20,13 +17,6 @@ export const authSlice = createSlice({
     },
   },
 });
-
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
-const persistedReducer = persistReducer(persistConfig,authSlice.reducer);
 
 export const { setAuthUser } = authSlice.actions;
 

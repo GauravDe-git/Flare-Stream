@@ -12,7 +12,6 @@ const useSearchSuggestions = (searchText) => {
   const searchCache = useSelector((store) => store.search);
 
   const suggestionsApi = async () => {
-    console.log("Api call - " + searchText);
     const searchSuggest = await fetch(
       SUGGESTIONS_API +
         searchText

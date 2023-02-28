@@ -21,7 +21,6 @@ const Login = () => {
       return signInWithEmailAndPassword(auth, email, password)
     })
       .then((userCredential) => {
-        console.log(userCredential);
         dispatch(setAuthUser(userCredential.user.uid));
         navigate("/");
       })
