@@ -2,11 +2,14 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { fireBaseApp } from "../../Firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
 
     const [email, SetEmail] = useState("");
     const [password, SetPassword] = useState("");
+
+    const navigate = useNavigate();
 
     const signUpSubmit = (e) => {
         e.preventDefault();
@@ -20,6 +23,8 @@ const Signup = () => {
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             console.log(userCredential);
+            navigate("/login");
+            alert("Account created,enter login details")
           })
           .catch((error) => {
             console.log(error);

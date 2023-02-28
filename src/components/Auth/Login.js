@@ -31,6 +31,12 @@ const Login = () => {
       });
   };
 
+  const fillGuestCredentials = (e) => {
+    e.preventDefault();
+    SetEmail("guest@guest.com");
+    SetPassword("123456");
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md mx-auto p-8 bg-white rounded-lg shadow-lg">
@@ -83,7 +89,8 @@ const Login = () => {
               Login
             </button>
             <div className="text-sm">
-              <a href="#" className="text-blue-500 hover:underline">
+              <a href="#" className="text-blue-500 hover:underline"
+              onClick={fillGuestCredentials}>
                 Enter Guest Credentials
               </a>
               <span className="mx-2">|</span>

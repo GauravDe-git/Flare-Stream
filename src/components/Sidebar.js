@@ -18,8 +18,8 @@ const Sidebar = () => {
             <Compass /> Explore
           </li>
         </Link>
-        <li className='text-lg p-2 flex flex-col justify-center items-center'>
-          <FolderPlus /> Playlists
+        <li className='text-lg p-2 flex flex-col justify-center items-center text-gray-500'>
+          <FolderPlus color='gray'/> Playlists
         </li>
         {isUserLoggedIn ? (
           <Link to='/likedVideos'>
@@ -34,11 +34,11 @@ const Sidebar = () => {
             <ThumbsUp /> Liked
           </li>
         )}
-        <li className='text-lg p-2 flex flex-col justify-center items-center'>
-          <Eye /> Watch Later
+        <li className='text-lg p-2 flex flex-col justify-center items-center text-gray-500'>
+          <Eye color='gray' /> Watch Later
         </li>
-        <li className='text-lg p-2 flex flex-col justify-center items-center'>
-          <Clock /> History
+        <li className='text-lg p-2 flex flex-col justify-center items-center text-gray-500'>
+          <Clock color='gray'/> History
         </li>
       </ul>
     </aside>
